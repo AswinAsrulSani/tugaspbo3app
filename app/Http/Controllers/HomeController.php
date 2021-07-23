@@ -10,7 +10,12 @@ class HomeController extends Controller
 {
     public function index(request $request)
     {
-        return view('layout.app');
+         $categories = sysmenu::where('sysmenu_id','=','1')
+        ->with('childrenCategories')
+        ->get();
+        //dd($categories);
+        //return view('layout.app');
+        return view('layout.app',['data_menu'=>$categories]);
     }
     public function login(request $request)
     {
