@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\sysuser;
+use App\sysmenu;
 
 class UserController extends Controller
 {
     public function index (Request $request){
         return view('master.user');
+         $categories = sysmenu::where('sysmenu_id','=','1')
+        ->with('childrenCategories')
+        ->get();
+        return view('master.user',['data_menu'=>$categories]);
+        //return view('master.user');
     }
 
     public function list (Request $request){
         $data = sysuser::select('id','uname','namalengkap','email')->get();
+        $data = sysuser::select('id','uname','namalengkap','email','jabatan')->get();
         $tabel ['draw']                 = '1';
         $tabel ['recordsTotal']         =  count($data);
         $tabel ['recordsFiltered']  =  count($data);
