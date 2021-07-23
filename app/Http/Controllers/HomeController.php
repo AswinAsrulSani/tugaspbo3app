@@ -11,7 +11,8 @@ class HomeController extends Controller
 {
     public function index(request $request)
     {
-         $categories = sysmenu::where('sysmenu_id','=','1')
+         return view('layout.app');
+        $categories = sysmenu::where('sysmenu_id','=','1')
         ->with('childrenCategories')
         ->get();
         //dd($categories);
