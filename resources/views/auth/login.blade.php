@@ -30,6 +30,8 @@
 
       <form action="{{asset ('')}}masuk" method="post">
       {{ csrf_field() }} 
+      
+      @csrf
         <div class="input-group mb-3">
           <input name="txtuser" class="form-control" placeholder="Username">
           <div class="input-group-append">
